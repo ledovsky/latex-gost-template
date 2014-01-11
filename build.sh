@@ -4,11 +4,11 @@ PDFLATEX='pdflatex -interaction=nonstopmode -shell-escape -file-line-error'
 GREP='grep ".*:[0-9]*:.*"' # показывает на выходе только ошибки
 
 # Файлы/Папки
-PDF='thesis.pdf'
+PDF_NAME='thesis.pdf'
 TEX='tex'
 INC='inc'
 GOST='gost'
-MAINTEX='thesis'
+MAINTEX='main'
 
 # Копирование файлов из папки gost
 cd $GOST
@@ -35,7 +35,7 @@ if [[ "$BIBOUTPUT" =~ "error" ]]; then
     echo "$BIBOUTPUT"
 fi
 $PDFLATEX $MAINTEX | $GREP
-cp $PDF ..
+cp $MAINTEX.pdf ../$PDF_NAME
 cd ..
 
 # Clear
