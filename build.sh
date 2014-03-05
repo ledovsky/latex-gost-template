@@ -6,25 +6,12 @@ GREP='grep ".*:[0-9]*:.*"' # показывает на выходе только
 # Файлы/Папки
 PDF_NAME='thesis.pdf'
 TEX='tex'
-INC='inc'
-GOST='gost'
-MAINTEX='main'
-
-# Копирование файлов из папки gost
-cd $GOST
-cp -r * ../$TEX
-cd ..
+IMG='tex/inc/img'
+MAINTEX='0-main'
 
 # Конвертация eps
-find -E $INC/ -type f -name "*.eps" -exec epstopdf {} ";" ;
-find -E $INC -type f -name "*.eps" -exec rm -f {} \;
-
-# Копирование файлов из папки img
-cd $INC
-if [[ $(ls) ]]; then
-    cp -r * ../$TEX
-fi
-cd ..
+find -E $IMG/ -type f -name "*.eps" -exec epstopdf {} ";" ;
+find -E $IMG -type f -name "*.eps" -exec rm -f {} \;
 
 # Сборка latex
 cd tex
@@ -39,6 +26,5 @@ cp $MAINTEX.pdf ../$PDF_NAME
 cd ..
 
 # Clear
-find -E $TEX/ -type f ! -regex ".*\.(tex|bib|gitignore)" -exec rm -f {} \; ;
-# find -E $TEX/ -type d -exec rm -rf {} \;
+find -E $TEX/ -type f ! -regex ".*\.(tex|bib|cls|sty|bst|clo|gitignore)" -exec rm -f {} \; ;
 
