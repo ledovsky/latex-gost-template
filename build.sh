@@ -15,16 +15,16 @@ find -E $IMG -type f -name "*.eps" -exec rm -f {} \;
 
 # Сборка latex
 cd tex
-$PDFLATEX $MAINTEX | $GREP
+$PDFLATEX $MAINTEX
 BIBOUTPUT=$(bibtex $MAINTEX)
 # Показывать output bibtex'a только в случае ошибок
 if [[ "$BIBOUTPUT" =~ "error" ]]; then
     echo "$BIBOUTPUT"
 fi
-$PDFLATEX $MAINTEX | $GREP
+$PDFLATEX $MAINTEX
 cp $MAINTEX.pdf ../$PDF_NAME
 cd ..
 
 # Clear
-find -E $TEX/ -type f ! -regex ".*\.(tex|bib|cls|sty|bst|clo|gitignore)" -exec rm -f {} \; ;
+find -E $TEX/ -type f ! -regex ".*\.(tex|bib|cls|sty|bst|clo|asm|gitignore)" -exec rm -f {} \; ;
 
