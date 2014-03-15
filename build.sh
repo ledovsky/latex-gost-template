@@ -26,5 +26,6 @@ cp $MAINTEX.pdf ../$PDF_NAME
 cd ..
 
 # Clear
-find -E $TEX/ -type f ! -regex ".*\.(tex|bib|cls|sty|bst|clo|asm|gitignore)" -exec rm -f {} \; ;
+find -E $TEX/ -maxdepth 1 -type f ! -regex ".*\.(tex|bib|cls|sty|bst|clo|asm|gitignore)" -exec rm -f {} \; ;
+
 
